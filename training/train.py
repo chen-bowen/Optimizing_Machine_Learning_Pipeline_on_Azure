@@ -6,6 +6,7 @@ from sklearn.metrics import mean_squared_error
 import joblib
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder
+from sklearn.metrics import roc_auc_score
 import pandas as pd
 from azureml.core.run import Run
 from azureml.data.dataset_factory import TabularDatasetFactory
@@ -98,6 +99,10 @@ def main():
 
     accuracy = model.score(x_test, y_test)
     run.log("Accuracy", np.float(accuracy))
+
+    pred_prob = model.predict_proba(x_test)
+    auc_score = roc_auc_score(y_test, pred_prob[:, 1], average="weighted")
+    run.log("AUC", np.float(auc_score))
 
     # files saved in the "outputs" folder are automatically uploaded into run history
     os.makedirs("outputs", exist_ok=True)
