@@ -65,7 +65,7 @@ The hypedrive pipeline is built with these order of sequence
 5. use `ScriptRunConfig` object as entry point, create the `HyperDriveConfig` object
 6. submit the `HyperDriveConfig` object for execution
 
-A diagram of the pipeline structure is shown as the following
+A diagram of the pipeline structure is shown as the following\
 ![Screenshot](images/pipeline%20architecture.png)
 
 **benefits of the bayesian parameter sampler**
